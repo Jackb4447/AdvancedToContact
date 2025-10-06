@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Advanced to contact — Board Game Shop</title>
+  <style>
+    :root{
+      --olive:#6b6f2e; /* muted olive */
+      --olive-dark:#4b4e22;
+      --sand:#c9bea4;
+      --text:#e9efe6;
+      --accent:#59624b; /* MTP muted */
+      --card-bg:#2b2b2b;
+      --muted:#b9b9b9;
+      --price-accent:#d4c08a;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#151815 0%,#0f120f 100%);color:var(--text);} 
+    /* MTP-like subtle pattern using repeating-linear-gradient */
+    .mtp-bg{
+      background-image: repeating-linear-gradient( -45deg, rgba(0,0,0,0.06) 0 8px, transparent 8px 16px ),
+                        linear-gradient(180deg, rgba(107,111,46,0.08), rgba(89,98,75,0.02));
+    }
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:2px solid rgba(255,255,255,0.03);}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:6px;background:linear-gradient(135deg,var(--olive),var(--olive-dark));display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--text);box-shadow:0 4px 14px rgba(0,0,0,0.5);}
+    .brand h1{margin:0;font-size:18px;letter-spacing:0.6px}
+    nav a{color:var(--muted);margin:0 8px;text-decoration:none;font-size:15px}
+    .container{max-width:1050px;margin:28px auto;padding:10px}
+
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:22px}
+
+    .card{background:rgba(12,14,12,0.6);border-radius:12px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+    .hero{display:flex;gap:18px;align-items:center}
+    .hero .visual{width:240px;height:240px;border-radius:10px;background:linear-gradient(180deg,rgba(107,111,46,0.2),rgba(89,98,75,0.08));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .hero h2{margin:0 0 8px 0}
+    .overview{margin-top:12px;color:var(--sand)}
+
+    .product-list{display:flex;flex-direction:column;gap:14px}
+    .product{display:flex;gap:12px;align-items:center}
+    .product img{width:110px;height:110px;border-radius:8px;object-fit:cover;border:1px solid rgba(255,255,255,0.03)}
+
+    .price{font-size:20px;font-weight:700;color:var(--price-accent)}
+    .muted{color:var(--muted);font-size:13px}
+
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--olive);color:var(--text);text-decoration:none;border:none;cursor:pointer;font-weight:600}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+    .btn.full{width:100%}
+
+    .cart-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
+    .cart-item .meta{display:flex;gap:12px;align-items:center}
+    .small{font-size:13px}
+
+    footer{margin:40px 0 80px 0;color:var(--muted);text-align:center}
+
+    /* responsive */
+    @media (max-width:900px){
+      .grid{grid-template-columns:1fr;}
+      .hero{flex-direction:column;align-items:flex-start}
+      .hero .visual{width:100%;height:160px}
+    }
+
+    /* tactical accents */
+    .rank-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .rank{padding:6px 8px;border-radius:6px;background:rgba(0,0,0,0.25);font-weight:600;font-size:13px}
+
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--olive-dark);font-weight:700}
+  </style>
+</head>
+<body class="mtp-bg">
+<header>
+  <div class="brand">
+    <div class="logo">AT</div>
+    <div>
+      <h1>Advanced to contact</h1>
+      <div class="muted">Tactical board game for future leaders</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#contact">Contact</a>
+    <a href="#checkout" class="btn">Cart (<span id="cart-count">0</span>)</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section id="home" class="card">
+    <div class="hero">
+      <div class="visual">
+        <svg width="140" height="140" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="8" fill="rgba(0,0,0,0.2)" />
+          <g fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5">
+            <path d="M10 10 L90 10 L90 90 L10 90 Z"/>
+            <path d="M20 20 L80 80 M80 20 L20 80"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h2>Advanced to contact</h2>
+        <div class="muted">A tactical board game for leadership, navigation, and section drills</div>
+        <p class="overview">This board game has been designed especially for you, the future leaders of the British Army. It's more than just a game; it's a battle of minds. Each move tests your understanding of key military subjects, from navigation to skill at arms and section battle drills. Every question answered correctly brings you closer to earning your next rank and advancing through the chain of command.</p>
+        <div class="rank-list">
+          <div class="rank">LCpl</div>
+          <div class="rank">Cpl</div>
+          <div class="rank">Sgt</div>
+          <div class="rank">SSgt</div>
+          <div class="rank">WO2</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid" style="margin-top:20px">
+    <section id="shop" class="card">
+      <h3>Product</h3>
+      <div class="product-list">
+        <div class="product">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect width='100%25' height='100%25' fill='%236b6f2e'/><text x='50%25' y='50%25' fill='white' font-size='24' font-family='Arial' text-anchor='middle' dominant-baseline='middle'>Advanced to contact</text></svg>" alt="Game board" />
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:800">Advanced to contact — Board Game</div>
+                <div class="muted small">Tactical training & leadership board game</div>
+              </div>
+              <div class="price">£39.99</div>
+            </div>
+            <p class="muted" style="margin-top:8px">Includes: Game board, rank slides (LCpl, Cpl, Sgt, SSgt, WO2), question cards, RSM question Cards, Dice and playing counters.</p>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <label class="small">Quantity <input id="qty" type="number" value="1" min="1" style="width:68px;margin-left:6px;padding:6px;border-radius:6px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--text)"></label>
+              <button class="btn" id="add-to-cart">Add to cart</button>
+              <button class="btn ghost" id="buy-now">Buy now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border:none;height:1px;background:rgba(255,255,255,0.02);margin:18px 0">
+      <h4>What you get</h4>
+      <ul class="muted small">
+        <li>1x Game board</li>
+        <li>5x Rank slides (LCpl, Cpl, Sgt, SSgt, WO2)</li>
+        <li>Question card decks + RSM special cards</li>
+        <li>Dice and playing counters</li>
+      </ul>
+    </section>
+
+    <aside class="card">
+      <h3>Cart</h3>
+      <div id="cart-contents">
+        <div class="muted small">Your cart is empty</div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <button class="btn full" id="checkout">Proceed to checkout</button>
+      </div>
+      <div style="margin-top:12px" class="muted small">Secure payments via Stripe (see server instructions below to enable live payments)</div>
+    </aside>
+  </div>
+
+  <section id="contact" class="card" style="margin-top:18px">
+    <h3>Contact</h3>
+    <p class="muted">Questions? Want to buy wholesale or request demo rules? Use the contact form below or email directly to <a href="mailto:jackbeedell@hotmail.co.uk" style="color:var(--price-accent)">jackbeedell@hotmail.co.uk</a>.</p>
+
+    <!-- Contact form: posts to /contact (server sample) but also has mailto fallback -->
+    <form id="contact-form" method="POST" action="/contact" onsubmit="return submitContact(event)">
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <input name="name" placeholder="Your name" required style="flex:1;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--text)">
+        <input name="email" type="email" placeholder="Your email" required style="flex:1;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--text)">
+      </div>
+      <textarea name="message" placeholder="Message" required style="width:100%;margin-top:10px;padding:10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--text)"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn">Send message</button>
+        <button class="btn ghost" type="button" onclick="mailtoFallback()">Email directly</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="checkout" class="card" style="margin-top:18px">
+    <h3>Checkout</h3>
+    <div id="checkout-area">
+      <div class="muted small">No checkout session started</div>
+    </div>
+    <div style="margin-top:12px;color:var(--muted);font-size:13px">Note: to enable live payments, deploy the included server and add your Stripe keys. The sample server code is included below.</div>
+  </section>
+
+  <footer>
+    <div>© <span id="year"></span> Advanced to contact — Tactical board game. Price £39.99.</div>
+  </footer>
+
+  <!-- Hidden order template -->
+  <template id="cart-template">
+    <div class="cart-item">
+      <div class="meta"><div><strong>Advanced to contact</strong><div class="small muted">Board game, qty: <span class="qty"></span></div></div></div>
+      <div>
+        <div class="small muted">£<span class="line-total"></span></div>
+      </div>
+    </div>
+  </template>
+
+</main>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const PRICE_PENCE = 3999; // pence
+  const PRICE_DISPLAY = 39.99;
+  // Simple cart stored in localStorage
+  function cartGet(){ try{return JSON.parse(localStorage.getItem('atc_cart')||'{}')}catch(e){return {}} }
+  function cartSet(c){ localStorage.setItem('atc_cart',JSON.stringify(c)); updateCartUI(); }
+
+  function updateCartUI(){
+    const c = cartGet();
+    const qty = c.qty||0;
+    document.getElementById('cart-count').textContent = qty;
+    const container = document.getElementById('cart-contents');
+    container.innerHTML='';
+    if(qty<=0){ container.innerHTML = '<div class="muted small">Your cart is empty</div>'; return; }
+    const tpl = document.getElementById('cart-template');
+    const node = tpl.content.cloneNode(true);
+    node.querySelector('.qty').textContent = qty;
+    node.querySelector('.line-total').textContent = (qty*PRICE_DISPLAY).toFixed(2);
+    const clear = document.createElement('div');
+    clear.style.marginTop='12px';
+    clear.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center"><div><strong>Total</strong><div class="small muted">incl. VAT where applicable</div></div><div style="font-weight:800">£'+(qty*PRICE_DISPLAY).toFixed(2)+'</div></div>';
+    const btnWrap = document.createElement('div'); btnWrap.style.marginTop='12px';
+    const checkoutBtn = document.createElement('button'); checkoutBtn.className='btn full'; checkoutBtn.textContent='Checkout — Stripe';
+    checkoutBtn.onclick = startCheckout;
+    btnWrap.appendChild(checkoutBtn);
+    const clearCartBtn = document.createElement('button'); clearCartBtn.className='btn ghost full'; clearCartBtn.textContent='Clear cart'; clearCartBtn.style.marginTop='8px'; clearCartBtn.onclick = ()=>{ localStorage.removeItem('atc_cart'); updateCartUI(); };
+    container.appendChild(node);
+    container.appendChild(clear);
+    container.appendChild(btnWrap);
+    // populate checkout area
+    const checkoutArea = document.getElementById('checkout-area');
+    checkoutArea.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center"><div><strong>Advanced to contact</strong><div class="small muted">Quantity: '+qty+'</div></div><div style="font-weight:800">£'+(qty*PRICE_DISPLAY).toFixed(2)+'</div></div><div style="margin-top:10px"><button class="btn" onclick="startCheckout()">Pay now</button></div>';
+  }
+
+  document.getElementById('add-to-cart').addEventListener('click',()=>{
+    const qty = Math.max(1,parseInt(document.getElementById('qty').value||1));
+    cartSet({qty});
+  });
+  document.getElementById('buy-now').addEventListener('click',()=>{
+    const qty = Math.max(1,parseInt(document.getElementById('qty').value||1));
+    cartSet({qty});
+    startCheckout();
+  });
+
+  document.getElementById('checkout').addEventListener('click',()=>{ document.querySelector('header a[href="#checkout"]').click(); window.scrollTo({top:document.getElementById('checkout').offsetTop-20,behavior:'smooth'}); });
+
+  // Contact fallback
+  function mailtoFallback(){
+    const name = document.querySelector('#contact-form [name=name]').value || '';
+    const email = document.querySelector('#contact-form [name=email]').value || '';
+    const msg = document.querySelector('#contact-form [name=message]').value || '';
+    const subject = encodeURIComponent('Contact from Advanced to contact website');
+    const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+msg);
+    window.location.href = 'mailto:jackbeedell@hotmail.co.uk?subject='+subject+'&body='+body;
+  }
+
+  async function submitContact(e){
+    e.preventDefault();
+    const form = e.target;
+    const data = new URLSearchParams(new FormData(form));
+    try{
+      const resp = await fetch(form.action,{method:'POST',body:data});
+      if(resp.ok){ alert('Message sent — thank you!'); form.reset(); }
+      else{ alert('Could not send via server — opening your email client.'); mailtoFallback(); }
+    }catch(err){ mailtoFallback(); }
+    return false;
+  }
+
+  // Checkout (calls backend /create-checkout-session)
+  async function startCheckout(){
+    const c = cartGet(); if(!c.qty || c.qty<=0){ alert('Your cart is empty'); return; }
+    // Create checkout session on the server
+    try{
+      const resp = await fetch('/create-checkout-session',{
+        method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({qty:c.qty})
+      });
+      const data = await resp.json();
+      if(data.url){ window.location = data.url; }
+      else if(data.error){ alert('Error starting checkout: '+data.error); }
+      else{ alert('Unexpected response from server.'); }
+    }catch(err){ alert('Could not reach payment server. Please contact jackbeedell@hotmail.co.uk'); }
+  }
+
+  // initialize
+  updateCartUI();
+</script>
+
+<!-- ==========================
+         BACKEND: server.js
+   ========================== -->
+
+<!--
+Save the following as server.js (Node/Express). It implements two endpoints:
+ POST /create-checkout-session -> creates a Stripe Checkout session and returns {url}
+ POST /contact -> example contact endpoint that accepts form data
+
+Requirements:
+ - Node 16+
+ - npm install express stripe body-parser cors
+ - Configure environment variables:
+    STRIPE_SECRET_KEY (your Stripe secret key, starts with sk_...)
+    STRIPE_PRICE_PENCE (optional, default 3999)
+    DOMAIN (the domain where your frontend is hosted, e.g. http://localhost:4242)
+
+To run locally (for testing):
+ 1. export STRIPE_SECRET_KEY=sk_test_...  (or set in .env)
+ 2. export DOMAIN=http://localhost:4242
+ 3. node server.js
+
+Notes:
+ - This sample uses Stripe Checkout. Replace keys with your live keys to accept real payments.
+ - You can host the server on Heroku, Vercel (serverless function), Render, Railway, etc.
+ - For a production site, add order persistence, address capture, email confirmation and security.
+-->
+
+<script type="text/plain" id="server-code">
+// server.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+
+const PORT = process.env.PORT || 4242;
+const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || '';
+const DOMAIN = process.env.DOMAIN || 'http://localhost:4242';
+const PRICE_PENCE = parseInt(process.env.STRIPE_PRICE_PENCE || '3999');
+
+if(!STRIPE_KEY){
+  console.warn('Warning: STRIPE_SECRET_KEY not set. /create-checkout-session will fail until you set it.');
+}
+
+const stripe = require('stripe')(STRIPE_KEY);
+
+app.post('/create-checkout-session', async (req, res) => {
+  try{
+    const qty = Math.max(1, parseInt(req.body.qty || 1));
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: [{
+        price_data: {
+          currency: 'gbp',
+          unit_amount: PRICE_PENCE,
+          product_data: { name: 'Advanced to contact — Board Game' }
+        },
+        quantity: qty
+      }],
+      success_url: DOMAIN + '/success.html?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: DOMAIN + '/?canceled=true'
+    });
+    res.json({ url: session.url });
+  }catch(err){ console.error(err); res.status(500).json({ error: err.message }); }
+});
+
+// Basic contact endpoint (for demo). In production you would send email via an SMTP provider or a service like SendGrid.
+app.post('/contact', (req, res) => {
+  // accept both form-url-encoded and json
+  const name = req.body.name || req.body['name'] || 'No name';
+  const email = req.body.email || req.body['email'] || 'No email';
+  const message = req.body.message || req.body['message'] || '';
+  console.log('Contact form received:', { name, email, message });
+  // TODO: send via SMTP / transactional email provider
+  res.status(200).send('OK');
+});
+
+app.listen(PORT, ()=> console.log('Server listening on',PORT));
+</script>
